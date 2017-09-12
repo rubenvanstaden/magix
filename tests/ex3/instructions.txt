@@ -1,0 +1,29 @@
+Name:     Example 3 (Section 8.4 in InductEx User Manual)
+Author:   CJ Fourie
+Level:    Easy
+Last mod: 6 September 2017
+
+This example shows the calculation the inductances in a 3-inductor network. Execute InductEx with:
+
+>inductex lman3.gds -l ixman3.ldf -i lman3.inp -fh
+
+
+The solution file (sol_ffh.txt) is included. Your results should match this.
+
+You can vary parameters in the layer definition file (ixman1.ldf) and observe the effects on calculation results.
+
+To generate the 3D rendering in Fig. 8.6(c) and (d), use "inp2dxf.exe" (which should be in the PATH or in the same directory) with:
+
+>inp2dxf lman3.inp lman3.dxf -h 5
+
+(You can use any name for the DXF file. The "-h" parameter sets the vertical dimension scaling,
+which we set to 5 here to make the thin-films thicker for viewing.)
+
+You can run the same example with the TetraHenry engine to use a tetrahedral mesh. For this,
+Gmsh has to be installed and available on the path.
+
+>inductex lman3.gds -l ixman3.ldf -i lman3.geo -th
+
+The solution file is included as sol_tth.txt.
+
+Note that the value for L2 is significantly higher when calculated with TetraHenry. This is because InductEx builds fully planarized models for TetraHenry, so that the inductor L2 in layer M2 is higher in the tetrahedral mesh model than it is in the FFH cuboid mesh model. You can observe the 3D mesh with Gmsh, by opening lman3.geo or ixthdefault.msh.

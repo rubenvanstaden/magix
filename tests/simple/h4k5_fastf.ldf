@@ -1,0 +1,274 @@
+*** Layer info for Hypres 4.5kA/cm2 process
+*** Author: Coenrad Fourie
+*** Last Modification: 18 February 2014
+*** Info: Updated layer order
+*** Info: This LDF gives faster but slightly less accurate results. Don't use for mutual coupling
+*
+$Parameters
+* Global parameters
+*  Units is the units used in input files PER METRE. This can be changed to handle large-scale modelling
+*    For IC applications (RSFQ circuits), keep Units = 1e-6 (1 micron)
+Units             =  1e-6
+*  CIFUnitsPerMicron lets InductEx know the CIF coordinate scale
+*    If your layout tool puts out CIF files with 100 units per micron (default), use 100
+*    If your layout tool uses 1000 units per micron (XIC if not stripped for export), use 1000
+*    If you have no idea what this means, keep CIFUnitsPerMicron = 100
+CIFUnitsPerMicron =  100
+AbsMin            =  0.001
+GapMax            =  3.0
+GPOverhang        =  2.5
+ProcessHasGroundPlane = TRUE
+ZSegsToEC         =  TRUE 
+CropGP            =  FALSE
+LastDieLayerOrder =  10
+GPLayer           =  30
+BlankAllLayer     =  60
+BlankXLayer       =  61
+BlankYLayer       =  62
+TermLayer         =  63
+TextLayer         =  64
+Lambda            =  0.09
+Sigma             =  10
+HFilaments        =  1
+Colour            =  1
+TerminalInRange   =  1.0
+$End
+*
+* LAYERS
+** Number is GDS layer number
+** Name is layer as applied in geometry input file
+** Bias is the mask-wafer offset of an object's border in this layer
+** Thickness is the layer thickness in microns
+** Lamba is the layer's penetration depth in microns (overrides global Lambda)
+** Sigma is the layer's bulk conductivity in 1/(Ohms_per_square*UnitSize_in_metres) - overrides global Sigma
+** Order is the layer's order during wafer construction - the lowest layer starts at 0, but does not need to be Ground (as in ADP)
+** Mask is the mask polarity: {1 = layer objects define material
+**                             0 = layer objects not translated to model
+**                            -1 = layer objects define cutots }
+** Filmtype is the layer material typ: {S = superconductor, N = normal conductor (not segmented), I = isolator, R = resistor, 
+**                                      A = auxiliary/don't care}
+**    ! See User Manual for difference between N (normal conductor) and R (resistor) for modelling purposes
+** HFilaments is the number of filaments segments are divided into over the height (overrides global HFilaments)
+** GapMax is the largest dimension of any segment that will not be subdivided into equal-sized smaller segments (overrides global GapMax)
+** LayerADD is the number of a layer of which objects are added to current layer (OR operation)
+** LayerSUB is the number of a layer of which objects are subtracted from the current layer
+** Colour is the DXF colour (for viewing purposes)
+**
+*
+* M0
+$Layer
+Number     =     30
+Name       =     M0
+Bias       =     0.2
+Thickness  =     0.1
+Lambda     =     0.09
+Order      =     0
+Mask       =    -1
+Filmtype   =     S
+HFilaments =     1
+Colour     =     130
+$End
+*
+$Layer
+Number     =     1
+Name       =     M1
+Bias       =     0
+Thickness  =     0.135
+Lambda     =     0.09
+Order      =     2
+Mask       =     1
+Filmtype   =     S
+HFilaments =     1
+Colour     =     10
+$End
+*
+$Layer
+Number     =     6
+Name       =     M2
+Bias       =    -0.2
+Thickness  =     0.3
+Lambda     =     0.09
+Order      =     7
+Mask       =     1
+Filmtype   =     S
+HFilaments =     1
+Colour     =     182
+$End
+*
+$Layer
+Number     =     10
+Name       =     M3
+Bias       =    -0.4
+Thickness  =     0.6
+Lambda     =     0.09
+Order      =     9
+Mask       =     1
+Filmtype   =     S
+HFilaments =     1
+Colour     =     160
+$End
+*
+* I0
+$Layer
+Number     =     31
+Name       =     I0
+Bias       =     0.2
+Thickness  =     0.15
+Order      =     1
+Mask       =    -1
+Filmtype   =     I
+$End
+*
+* I1C
+$Layer
+Number     =     4
+Name       =     I1C
+Bias       =     0
+Thickness  =     0.05
+Order      =     3
+Mask       =     0
+Filmtype   =     A
+idensity   =     4.5e-5
+$End
+*
+* I1B
+$Layer
+Number     =     3
+Name       =     I1B
+Bias       =    -0.1
+Thickness  =     0.2
+Order      =     6
+Mask       =    -1
+Filmtype   =     I
+LayerSUB   =     9
+* We subtract layer 9 (R2) from I1B to eradicate I1B vias to resistors that will
+* short to M1 otherwise (all normal layers are discarded during segmentation, thus
+* removing them from the z-directed stack for connectivity checking).
+$End
+*
+* I2
+$Layer
+Number     =     8
+Name       =     I2
+Bias       =     0.2
+Thickness  =     0.5
+Order      =     8
+Mask       =    -1
+Filmtype   =     I
+$End
+*
+* R2
+$Layer
+Number     =     9
+Name       =     R2
+Bias       =     0
+Thickness  =     0.07
+Sigma      =     6.8027
+Order      =     5
+Mask       =     1
+Filmtype   =     N
+$End
+*
+* R3
+$Layer
+Number     =     11
+Name       =     R3
+Bias       =     0
+Thickness  =     0.35
+Sigma      =     10
+Order      =     10
+Mask       =     1
+Filmtype   =     N
+$End
+*
+* A1
+$Layer
+Number     =     5
+Name       =     A1
+Bias       =     0
+Thickness  =     0.04
+Order      =     4
+Mask       =     0
+Filmtype   =     A
+$End
+*
+* TERM
+$Layer
+Number     =     63
+Name       =     TERM
+Bias       =     0
+Thickness  =     0.1
+Order      =     11
+Mask       =    -4
+$End
+*
+* BLXY
+* Blanking layer for both X and Y directions (no elements created in any layer inside BLXY objects)
+$Layer
+Number     =     60
+Name       =     BLXY
+Bias       =     0
+Order      =     12
+Mask       =    -2
+$End
+*
+* BLX
+* Blanking layer for X direction (no x-directed elements created in any layer inside BLX objects)
+$Layer
+Number     =     61
+Name       =     BLX
+Bias       =     0
+Order      =     13
+Mask       =    -2
+$End
+*
+* BLY
+* Blanking layer for Y direction (no y-directed elements created in any layer inside BLY objects)
+$Layer
+Number     =     62
+Name       =     BLY
+Bias       =     0
+Order      =     14
+Mask       =    -3
+$End
+*
+* OPERATORS
+** Define operators here
+*
+$Operator
+Name            =     GPM3M0
+Type            =     EC
+LayersRemove    =     1 6 31 4 3 8 9 5
+LayersConnect   =     30 10
+$End
+*
+$Operator
+Name            =     GPM3M2
+Type            =     EC
+LayersRemove    =     8 9
+LayersConnect   =     6 10
+$End
+*
+$Operator
+Name            =     GPM1M0
+Type            =     EC
+LayersRemove    =     31
+LayersConnect   =     1 30
+$End
+*
+$Operator
+Name            =     SQJJ
+Type            =     MR
+LayersTransform =     3 4 5
+$End
+*
+*
+* CONSTRUCTORS
+** Define constructors here
+*
+$Constructor
+Name            =     COIL1
+Type            =     Coil
+Colour          =     62
+SegSize         =     1
+$End

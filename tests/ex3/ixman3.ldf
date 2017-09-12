@@ -1,0 +1,95 @@
+*Layer Definition File for InductEx manual - ex3
+*
+$Parameters
+Units             =  1e-6
+CIFUnitsPerMicron =  100
+GapMax            =  2.0
+AbsMin            =  0.025
+GPOverhang        =  2.5
+ProcessHasGroundPlane = TRUE
+LastDieLayerOrder =  5
+GPLayer           =  17
+TermLayer         =  19
+TextLayer         =  18
+HFilaments        =  1
+TerminalInRange   =  1.0
+$End
+*
+* LAYERS
+*
+* M0
+$Layer
+Number     =     17
+Name       =     M0
+Thickness  =     0.2
+Lambda     =     0.09
+Order      =     0
+Mask       =    -1
+Filmtype   =     S
+HFilaments =     1
+Colour     =     135
+$End
+*
+* I0
+$Layer
+Number     =     2
+Name       =     I0
+Thickness  =     0.15
+Order      =     1
+Mask       =    -1
+Filmtype   =     I
+$End
+*
+* M1
+$Layer
+Number     =     5
+Name       =     M1
+Thickness  =     0.25
+Lambda     =     0.09
+Order      =     2
+Mask       =     1
+Filmtype   =     S
+HFilaments =     1
+Colour     =     10
+$End
+*
+* I1A
+$Layer
+Number     =     7
+Name       =     I1A
+Thickness  =     0.1
+Order      =     3
+Mask       =     -1
+Filmtype   =     I
+$End
+*
+* I1B
+$Layer
+Number     =     11
+Name       =     I1B
+Thickness  =     0.2
+Order      =     4
+Mask       =    -1
+Filmtype   =     I
+$End
+*
+* M2
+$Layer
+Number     =     12
+Name       =     M2
+Thickness  =     0.35
+Lambda     =     0.09
+Order      =     5
+Mask       =     1
+Filmtype   =     S
+Colour     =     182
+$End
+*
+* TERM
+$Layer
+Number     =     19
+Name       =     TERM
+Order      =     6
+Mask       =    -4
+$End
+

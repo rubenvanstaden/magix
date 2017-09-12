@@ -1,0 +1,7 @@
+[requires]
+docopt.cpp/0.6.2@hoxnox/testing
+Boost/1.60.0@lasote/stable
+jsonformoderncpp/2.1.1@vthiery/stable
+
+[generators]
+cmake

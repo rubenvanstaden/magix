@@ -1,0 +1,41 @@
+InductEx v5.04 64-bit (26 August 2017). Copyright 2003-2017 Coenrad Fourie
+Licensed to: Ruben van Staden, Stellenbosch University, until 31 Dec 2018. [Super with Visualization]
+ex3.gds -l ixman3.ldf -i lman.inp -fh -k -b 
+Techfile ixman3.ldf read: Units in 1E-6 m. AbsMin=0.025 GapMax=2
+Spice netlist ex3.cir read. Totals: L = 3, k = 0, P = 3.
+Total unique loops identified in netlist = 3
+Using FFH with DIAG preconditioner.
+FFH version 1.2su_64 found.
+GDS file ex3.gds read: db units in 1E-9 m, 0.001 units per user unit.
+1 structures read. Reduced 10 objects to 5 polygons and 3 terminals.
+Terminal blocks = 3; Labels = 3; Extracted Ports = 3
+
+Port                  Positive terminal    Negative terminal
+P1                    M1,   line along y;  M0,   same as "+" terminal.
+P2                    M2,   line along x;  M0,   same as "+" terminal.
+P3                    M1,   line along y;  M0,   same as "+" terminal.
+Minimum filaments in FFH = 1643
+
+SVD info: Condition nr. = 2.009; unknowns = 6; rank = 6. 
+
+Impedance  Inductance [pH]     Resistance [Ohm]   AbsDiff   PercDiff
+Name      Design    Extracted Design    Extracted (L only)  (L only)
+L1        1.00000   1.65861   --        --        +0.6586   +65.86%
+L2        1.00000   3.21219   --        --        +2.2121   +221.22%
+L3        1.00000   1.27788   --        --        +0.2778   +27.79%
+
+External magnetic field coupling (x-directed):
+KFX0     LFX   L1                       3.25506050901077E-9
+KFX1     LFX   L2                       8.23854844030602E-7
+
+External magnetic field coupling (y-directed):
+KFY0     LFY   L1                       0.0000189315795016835
+KFY1     LFY   L2                      -6.80119611641908E-6
+
+External magnetic field coupling (z-directed):
+KFZ0     LFZ   L1                      -1.68940868445315E-7
+KFZ1     LFZ   L2                      -4.8126844549675E-7
+Deallocating memory.
+Cycles found in 0.025 seconds.
+SVD solution in 0.004 seconds.
+Job finished in 1.048 seconds.

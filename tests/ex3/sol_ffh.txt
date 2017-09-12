@@ -1,0 +1,29 @@
+InductEx v5.04 64-bit (26 August 2017). Copyright 2003-2017 Coenrad Fourie
+Licensed to: SUN Magnetics [Super with Visualization]
+lman3.gds -l ixman3.ldf -i lman3.inp -fh -L c:\inductex\licenses\ix_license.txt 
+Techfile ixman3.ldf read: Units in 1E-0006 m. AbsMin=0.025 GapMax=2
+Spice netlist lman3.cir read. Totals: L = 3, k = 0, P = 3.
+Total unique loops identified in netlist = 3
+Using FFH with DIAG preconditioner.
+FFH version 1.2su_64 found.
+GDS file lman3.gds read: db units in 1E-0009 m, 0.001 units per user unit.
+1 structures read. Reduced 10 objects to 5 polygons and 3 terminals.
+Terminal blocks = 3; Labels = 3; Extracted Ports = 3
+
+Port                  Positive terminal    Negative terminal
+P1                    M1,   line along y;  M0,   same as "+" terminal.
+P2                    M2,   line along x;  M0,   same as "+" terminal.
+P3                    M1,   line along y;  M0,   same as "+" terminal.
+Minimum filaments in FFH = 1643
+
+SVD info: Condition nr. = 2.009; unknowns = 6; rank = 6. 
+
+Impedance  Inductance [pH]     Resistance [Ohm]   AbsDiff   PercDiff
+Name      Design    Extracted Design    Extracted (L only)  (L only)
+L1        1.00000   1.65861   --        --        +0.6586   +65.86%
+L2        1.00000   3.21219   --        --        +2.2122   +221.22%
+L3        1.00000   1.27788   --        --        +0.2778   +27.79%
+Deallocating memory.
+Cycles found in 0.302 seconds.
+SVD solution in 0.125 seconds.
+Job finished in 2.048 seconds.
