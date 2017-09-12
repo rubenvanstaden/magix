@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sys.h"
-#include <math.h>
 #include "clipper.hpp"
 
 #include "geometry.h"
@@ -15,6 +12,7 @@
 
 #include <docopt/docopt.h>
 #include <cstdlib>
+#include <math.h>
 
 using namespace ClipperLib;
 
@@ -31,31 +29,18 @@ static const char *const USAGE =
 
 void vtk_methods(System *sys, Grid *grid, std::map <std::string, Node *> filpoints, std::string vtk_run)
 {
-    // vtk_grid_polygons(sys, grid, layerpoly);
-    // vtk_layers(sys, grid, layerpoly);
-    // vtk_grid(sys, grid, layerpoly);
-    // vtk_point_inside();
     vtk_grid_polygons(sys, grid);
     vtk_mag_field(sys, grid);
-    // vtk_rect_currents(sys, grid);
-    // vtk_corners(sys, grid);
-    // vtk_faces(sys, grid);
-    vtk_current(sys, grid);
     vtk_poly_points(sys, grid);
-    vtk_x_filaments(sys, grid);
-    // vtk_clipper(sys, grid);
-    vtk_intersection(sys, grid);
-    // vtk_filament_intersections(sys, grid);
-    // vtk_bool_mapper(sys, grid);
     vtk_current_sum(sys, grid, filpoints);
 
-    else if (vtk_run.compare("curr") == 0)
-        std::system("paraview ../magix_current.vtp");
+    if (vtk_run.compare("curr") == 0)
+        std::system("paraview ../vtk_sum_current.vtp");
     else if (vtk_run.compare("mag") == 0)
-        std::system("paraview ../magix_points.vtp");
+        std::system("paraview ../vtk_magnetic_field.vtp");
 }
 
-std::map <std::string, Node *> layer_points(System *sys)
+std::map <std::string, Node *> filament_point_currents(System *sys)
 {
     std::map <std::string, Node *> filpoints;
 
@@ -72,6 +57,8 @@ std::map <std::string, Node *> layer_points(System *sys)
         c->x = fil->stroom.x;
         c->y = fil->stroom.y;
         c->z = fil->stroom.z;
+
+        std::string nodekey = std::to_string(p->x) + " " + std::to_string(p->y) + " " + std::to_string(p->z);
 
         if (filpoints[nodekey] == 0) {
             filpoints[nodekey] = c;
@@ -126,7 +113,7 @@ int main(int argc, char *argv[])
                 read_mat(sys, port);
             std::cout << "\n";
 
-            mapCurrents filpoints = layer_points(sys);
+            mapCurrents filpoints = filament_point_currents(sys);
 
             bounding_box(sys, grid, layers);
             create_grid_nodes(sys, grid);
