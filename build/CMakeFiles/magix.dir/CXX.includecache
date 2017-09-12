@@ -7823,9 +7823,13 @@ vtkVersion.h
 -
 vtkSmartPointer.h
 -
-vtkPolyDataMapper.h
+vtkXMLStructuredGridWriter.h
 -
 vtkXMLPolyDataWriter.h
+-
+vtkXMLPolyDataReader.h
+-
+vtkPolyDataMapper.h
 -
 vtkCellArray.h
 -
@@ -7849,8 +7853,6 @@ vtkProperty.h
 -
 vtkStructuredGrid.h
 -
-vtkXMLStructuredGridWriter.h
--
 vtkDataSetMapper.h
 -
 vtkPolyhedron.h
@@ -7860,8 +7862,6 @@ vtkWedge.h
 vtkPointSource.h
 -
 vtkVertexGlyphFilter.h
--
-vtkXMLPolyDataReader.h
 -
 vtkPolyDataReader.h
 -

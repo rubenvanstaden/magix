@@ -1,7 +1,10 @@
 #include <vtkVersion.h>
 #include <vtkSmartPointer.h>
-#include <vtkPolyDataMapper.h>
+#include <vtkXMLStructuredGridWriter.h>
 #include <vtkXMLPolyDataWriter.h>
+#include <vtkXMLPolyDataReader.h>
+
+#include <vtkPolyDataMapper.h>
 #include <vtkCellArray.h>
 #include <vtkCellData.h>
 #include <vtkArrayCalculator.h>
@@ -13,13 +16,11 @@
 #include <vtkPoints.h>
 #include <vtkProperty.h>
 #include <vtkStructuredGrid.h>
-#include <vtkXMLStructuredGridWriter.h>
 #include <vtkDataSetMapper.h>
 #include <vtkPolyhedron.h>
 #include <vtkWedge.h>
 #include <vtkPointSource.h>
 #include <vtkVertexGlyphFilter.h>
-#include <vtkXMLPolyDataReader.h>
 #include <vtkPolyDataReader.h>
 
 #include "sys.h"

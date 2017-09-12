@@ -18,7 +18,9 @@ using namespace ClipperLib;
 
 static const char *const USAGE =
     R"(Usage: 
-        magix <test-name> [--vtk=<vtk-run>] --ports <port-name>...
+        magix <test-name> --ports <port-name>...
+        magix <test-name> [--vtk=<vtk-run>] --ports <port-name>...        
+        magix <test-name> [--vtk=<vtk-run>] --grid=[small | medium | large] --ports <port-name>...
 
         Options:
             -v --verbose        Verbose mode
@@ -90,8 +92,25 @@ int main(int argc, char *argv[])
     sys->x_slice = 0.0;
 
     // Change these values.
-    sys->factor = 50;
-    sys->NGrid = 50;
+    if (args["--grid"].isString()) {
+        std::string gridsize = args["--grid"].asString();
+
+        if (gridsize.compare("small") == 0) {
+            sys->factor = 100;
+            sys->NGrid = 100;
+        }
+        else if (gridsize.compare("medium") == 0) {
+            sys->factor = 500;
+            sys->NGrid = 500;
+        }
+        else if (gridsize.compare("large") == 0) {
+            sys->factor = 1000;
+            sys->NGrid = 1000;
+        }
+    } else {
+        sys->factor = 10;
+        sys->NGrid = 10;    
+    }
 
     if (args["<test-name>"].isString()) {
         std::string test_name = args["<test-name>"].asString();
