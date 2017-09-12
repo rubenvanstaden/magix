@@ -1138,10 +1138,6 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkAbstractArray.h
  /usr/include/vtk-6.3/vtkAbstractMapper.h
  /usr/include/vtk-6.3/vtkAbstractMapper3D.h
- /usr/include/vtk-6.3/vtkAbstractPointLocator.h
- /usr/include/vtk-6.3/vtkAbstractTransform.h
- /usr/include/vtk-6.3/vtkActor.h
- /usr/include/vtk-6.3/vtkActorCollection.h
  /usr/include/vtk-6.3/vtkAlgorithm.h
  /usr/include/vtk-6.3/vtkAppendFilter.h
  /usr/include/vtk-6.3/vtkArrayCalculator.h
@@ -1149,13 +1145,10 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkArrayIteratorTemplate.h
  /usr/include/vtk-6.3/vtkArrayIteratorTemplate.txx
  /usr/include/vtk-6.3/vtkArrayIteratorTemplateImplicit.txx
- /usr/include/vtk-6.3/vtkArrowSource.h
  /usr/include/vtk-6.3/vtkAtomic.h
  /usr/include/vtk-6.3/vtkAtomicTypeConcepts.h
  /usr/include/vtk-6.3/vtkAtomicTypes.h
  /usr/include/vtk-6.3/vtkAutoInit.h
- /usr/include/vtk-6.3/vtkBooleanOperationPolyDataFilter.h
- /usr/include/vtk-6.3/vtkCamera.h
  /usr/include/vtk-6.3/vtkCell.h
  /usr/include/vtk-6.3/vtkCell3D.h
  /usr/include/vtk-6.3/vtkCellArray.h
@@ -1163,16 +1156,10 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkCellLinks.h
  /usr/include/vtk-6.3/vtkCellType.h
  /usr/include/vtk-6.3/vtkCellTypes.h
- /usr/include/vtk-6.3/vtkClipClosedSurface.h
- /usr/include/vtk-6.3/vtkCollection.h
- /usr/include/vtk-6.3/vtkColor.h
- /usr/include/vtk-6.3/vtkCommonColorModule.h
  /usr/include/vtk-6.3/vtkCommonCoreModule.h
  /usr/include/vtk-6.3/vtkCommonDataModelModule.h
  /usr/include/vtk-6.3/vtkCommonExecutionModelModule.h
  /usr/include/vtk-6.3/vtkCommonInformationKeyManager.h
- /usr/include/vtk-6.3/vtkCommonMathModule.h
- /usr/include/vtk-6.3/vtkCommonTransformsModule.h
  /usr/include/vtk-6.3/vtkConfigure.h
  /usr/include/vtk-6.3/vtkDataArray.h
  /usr/include/vtk-6.3/vtkDataArrayTemplate.h
@@ -1191,11 +1178,6 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkFiltersCoreModule.h
  /usr/include/vtk-6.3/vtkFiltersGeneralModule.h
  /usr/include/vtk-6.3/vtkFiltersSourcesModule.h
- /usr/include/vtk-6.3/vtkFloatArray.h
- /usr/include/vtk-6.3/vtkGlyph2D.h
- /usr/include/vtk-6.3/vtkGlyph3D.h
- /usr/include/vtk-6.3/vtkHexahedron.h
- /usr/include/vtk-6.3/vtkHomogeneousTransform.h
  /usr/include/vtk-6.3/vtkIOGeometryModule.h
  /usr/include/vtk-6.3/vtkIOLegacyModule.h
  /usr/include/vtk-6.3/vtkIOStream.h
@@ -1204,11 +1186,6 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkIdList.h
  /usr/include/vtk-6.3/vtkIdTypeArray.h
  /usr/include/vtk-6.3/vtkImageAlgorithm.h
- /usr/include/vtk-6.3/vtkImageData.h
- /usr/include/vtk-6.3/vtkImageDataToPointSet.h
- /usr/include/vtk-6.3/vtkImageMapper3D.h
- /usr/include/vtk-6.3/vtkImageSliceMapper.h
- /usr/include/vtk-6.3/vtkImplicitFunction.h
  /usr/include/vtk-6.3/vtkIndent.h
  /usr/include/vtk-6.3/vtkInformation.h
  /usr/include/vtk-6.3/vtkInformationDoubleVectorKey.h
@@ -1216,31 +1193,14 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkInformationKey.h
  /usr/include/vtk-6.3/vtkInformationVector.h
  /usr/include/vtk-6.3/vtkIntArray.h
- /usr/include/vtk-6.3/vtkInteractionStyleModule.h
- /usr/include/vtk-6.3/vtkInteractorObserver.h
- /usr/include/vtk-6.3/vtkInteractorStyle.h
- /usr/include/vtk-6.3/vtkInteractorStyleImage.h
- /usr/include/vtk-6.3/vtkInteractorStyleTrackballCamera.h
- /usr/include/vtk-6.3/vtkIntersectionPolyDataFilter.h
- /usr/include/vtk-6.3/vtkLinearTransform.h
- /usr/include/vtk-6.3/vtkLocator.h
  /usr/include/vtk-6.3/vtkMappedDataArray.h
  /usr/include/vtk-6.3/vtkMappedDataArray.txx
  /usr/include/vtk-6.3/vtkMapper.h
- /usr/include/vtk-6.3/vtkMapper2D.h
- /usr/include/vtk-6.3/vtkMath.h
- /usr/include/vtk-6.3/vtkMathConfigure.h
- /usr/include/vtk-6.3/vtkMatrix4x4.h
- /usr/include/vtk-6.3/vtkNamedColors.h
- /usr/include/vtk-6.3/vtkNew.h
  /usr/include/vtk-6.3/vtkOStrStreamWrapper.h
  /usr/include/vtk-6.3/vtkOStreamWrapper.h
  /usr/include/vtk-6.3/vtkObject.h
  /usr/include/vtk-6.3/vtkObjectBase.h
  /usr/include/vtk-6.3/vtkObjectFactory.h
- /usr/include/vtk-6.3/vtkOctreePointLocator.h
- /usr/include/vtk-6.3/vtkPlane.h
- /usr/include/vtk-6.3/vtkPlaneCollection.h
  /usr/include/vtk-6.3/vtkPointData.h
  /usr/include/vtk-6.3/vtkPointSet.h
  /usr/include/vtk-6.3/vtkPointSource.h
@@ -1251,37 +1211,18 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkPolyDataReader.h
  /usr/include/vtk-6.3/vtkPolygon.h
  /usr/include/vtk-6.3/vtkPolyhedron.h
- /usr/include/vtk-6.3/vtkProp.h
- /usr/include/vtk-6.3/vtkProp3D.h
- /usr/include/vtk-6.3/vtkPropCollection.h
  /usr/include/vtk-6.3/vtkProperty.h
- /usr/include/vtk-6.3/vtkPyramid.h
- /usr/include/vtk-6.3/vtkRectilinearGrid.h
- /usr/include/vtk-6.3/vtkRegularPolygonSource.h
- /usr/include/vtk-6.3/vtkRenderWindow.h
- /usr/include/vtk-6.3/vtkRenderWindowInteractor.h
- /usr/include/vtk-6.3/vtkRenderer.h
  /usr/include/vtk-6.3/vtkRenderingCoreModule.h
- /usr/include/vtk-6.3/vtkSelectionNode.h
  /usr/include/vtk-6.3/vtkSetGet.h
  /usr/include/vtk-6.3/vtkSmartPointer.h
  /usr/include/vtk-6.3/vtkSmartPointerBase.h
- /usr/include/vtk-6.3/vtkSmoothPolyDataFilter.h
  /usr/include/vtk-6.3/vtkSortDataArray.h
- /usr/include/vtk-6.3/vtkSphereSource.h
  /usr/include/vtk-6.3/vtkStdString.h
- /usr/include/vtk-6.3/vtkStringArray.h
  /usr/include/vtk-6.3/vtkStructuredData.h
  /usr/include/vtk-6.3/vtkStructuredGrid.h
- /usr/include/vtk-6.3/vtkStructuredGridAlgorithm.h
  /usr/include/vtk-6.3/vtkSystemIncludes.h
- /usr/include/vtk-6.3/vtkTetra.h
- /usr/include/vtk-6.3/vtkTextMapper.h
  /usr/include/vtk-6.3/vtkTexture.h
  /usr/include/vtk-6.3/vtkTimeStamp.h
- /usr/include/vtk-6.3/vtkTransform.h
- /usr/include/vtk-6.3/vtkTriangle.h
- /usr/include/vtk-6.3/vtkTuple.h
  /usr/include/vtk-6.3/vtkType.h
  /usr/include/vtk-6.3/vtkTypeTemplate.h
  /usr/include/vtk-6.3/vtkTypeTraits.h
@@ -1290,22 +1231,16 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkTypedDataArrayIterator.h
  /usr/include/vtk-6.3/vtkUnicodeString.h
  /usr/include/vtk-6.3/vtkUnsignedCharArray.h
- /usr/include/vtk-6.3/vtkUnstructuredGrid.h
  /usr/include/vtk-6.3/vtkUnstructuredGridAlgorithm.h
- /usr/include/vtk-6.3/vtkUnstructuredGridBase.h
  /usr/include/vtk-6.3/vtkVariant.h
  /usr/include/vtk-6.3/vtkVariantCast.h
  /usr/include/vtk-6.3/vtkVariantInlineOperators.h
  /usr/include/vtk-6.3/vtkVersion.h
  /usr/include/vtk-6.3/vtkVersionMacros.h
  /usr/include/vtk-6.3/vtkVertexGlyphFilter.h
- /usr/include/vtk-6.3/vtkViewport.h
- /usr/include/vtk-6.3/vtkVolume.h
- /usr/include/vtk-6.3/vtkVolumeCollection.h
  /usr/include/vtk-6.3/vtkWeakPointerBase.h
  /usr/include/vtk-6.3/vtkWedge.h
  /usr/include/vtk-6.3/vtkWin32Header.h
- /usr/include/vtk-6.3/vtkWindow.h
  /usr/include/vtk-6.3/vtkXMLDataReader.h
  /usr/include/vtk-6.3/vtkXMLPolyDataReader.h
  /usr/include/vtk-6.3/vtkXMLPolyDataWriter.h
@@ -1314,7 +1249,6 @@ CMakeFiles/magix.dir/src/vtk_grid.cpp.o
  /usr/include/vtk-6.3/vtkXMLStructuredGridWriter.h
  /usr/include/vtk-6.3/vtkXMLUnstructuredDataReader.h
  /usr/include/vtk-6.3/vtkXMLUnstructuredDataWriter.h
- /usr/include/vtk-6.3/vtkXMLUnstructuredGridWriter.h
  /usr/include/vtk-6.3/vtkXMLWriter.h
  /usr/include/vtk-6.3/vtksys/Configure.h
  /usr/include/vtk-6.3/vtksys/Configure.hxx
