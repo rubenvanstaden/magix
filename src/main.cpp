@@ -6,7 +6,6 @@
 #include "grid.h"
 #include "vtk_functions.h"
 #include "polygons.h"
-#include "layers.h"
 #include "fields.h"
 #include "points.h"
 
@@ -42,41 +41,6 @@ void vtk_methods(System *sys, Grid *grid, std::map <std::string, Node *> filpoin
         std::system("paraview ../vtk_magnetic_field.vtp");
 }
 
-std::map <std::string, Node *> filament_point_currents(System *sys)
-{
-    std::map <std::string, Node *> filpoints;
-
-    int count = 0;
-    
-    for (auto fil : sys->filVect) {
-        Node *p = new Node;
-        Node *c = new Node;
-
-        p->x = fil->S.x;
-        p->y = fil->S.y;
-        p->z = fil->S.z;
-        
-        c->x = fil->stroom.x;
-        c->y = fil->stroom.y;
-        c->z = fil->stroom.z;
-
-        std::string nodekey = std::to_string(p->x) + " " + std::to_string(p->y) + " " + std::to_string(p->z);
-
-        if (filpoints[nodekey] == 0) {
-            filpoints[nodekey] = c;
-        }
-        else {
-            Node *c_prev = filpoints[nodekey];
-            c->x += c_prev->x;
-            c->y += c_prev->y;
-            c->z += c_prev->z;
-            filpoints[nodekey] = c;
-        }
-    }
-
-    return filpoints;
-}
-
 int main(int argc, char *argv[]) 
 {
     System *sys = new System;
@@ -91,7 +55,6 @@ int main(int argc, char *argv[])
     sys->glyph_view = 0;
     sys->x_slice = 0.0;
 
-    // Change these values.
     if (args["--grid"].isString()) {
         std::string gridsize = args["--grid"].asString();
 
@@ -109,7 +72,7 @@ int main(int argc, char *argv[])
         }
     } else {
         sys->factor = 10;
-        sys->NGrid = 10;    
+        sys->NGrid = 10;
     }
 
     if (args["<test-name>"].isString()) {
@@ -117,12 +80,6 @@ int main(int argc, char *argv[])
 
         file_system(sys, test_name);
         read_filaments(sys);
-
-        for (auto fil : sys->filVect) {
-            fil->stroom.x = 0.0;
-            fil->stroom.y = 0.0;
-            fil->stroom.z = 0.0;        
-        }    
 
         if (args["<port-name>"].isStringList()) {
             auto const& list = args["<port-name>"].asStringList();

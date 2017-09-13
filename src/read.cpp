@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -160,6 +158,13 @@ void read_filaments(System *sys)
         throw std::invalid_argument("Unable to open MSH file.");
 
     create_fil_corners(sys);
+
+    // Initialize all filament currents to zero.
+    for (auto fil : sys->filVect) {
+        fil->stroom.x = 0.0;
+        fil->stroom.y = 0.0;
+        fil->stroom.z = 0.0;        
+    }    
     
     std::cout << "--- Success reading filament file ---" << std::endl;
 }
@@ -232,6 +237,40 @@ void read_mat(System *sys, std::string mat_name) {
         throw std::invalid_argument("Unable to open MSH file.");
 }
 
+std::map <std::string, Node *> filament_point_currents(System *sys)
+{
+    std::map <std::string, Node *> filpoints;
+
+    int count = 0;
+    
+    for (auto fil : sys->filVect) {
+        Node *p = new Node;
+        Node *c = new Node;
+
+        p->x = fil->S.x;
+        p->y = fil->S.y;
+        p->z = fil->S.z;
+        
+        c->x = fil->stroom.x;
+        c->y = fil->stroom.y;
+        c->z = fil->stroom.z;
+
+        std::string nodekey = std::to_string(p->x) + " " + std::to_string(p->y) + " " + std::to_string(p->z);
+
+        if (filpoints[nodekey] == 0) {
+            filpoints[nodekey] = c;
+        }
+        else {
+            Node *c_prev = filpoints[nodekey];
+            c->x += c_prev->x;
+            c->y += c_prev->y;
+            c->z += c_prev->z;
+            filpoints[nodekey] = c;
+        }
+    }
+
+    return filpoints;
+}
 
 
 

@@ -1,0 +1,4 @@
+*Solutions
+ 0.1916241787
+*Singular values
+ 1.4142135624
