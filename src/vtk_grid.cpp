@@ -207,7 +207,9 @@ void vtk_current_sum(System *sys, Grid *grid, std::map <std::string, Node *> fil
     polydata->GetPointData()->SetVectors(current_field);
 
     vtkSmartPointer<vtkXMLPolyDataWriter> writer = vtkSmartPointer<vtkXMLPolyDataWriter>::New();
-    writer->SetFileName("vtk_sum_current.vtp");
+    std::string filename = sys->vtkpath + "vtk_sum_current.vtp";
+    std::cout << filename << std::endl;
+    writer->SetFileName(filename.c_str());
     writer->SetInputData(polydata);
     writer->Write();
 }

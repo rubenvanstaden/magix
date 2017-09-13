@@ -11,67 +11,33 @@
 
 #include "clipper.hpp"
 #include "sys.h"
+#include <unistd.h>
 
-#ifdef _WIN32
-#include <direct.h>
-#elif defined _WIN64
-#include <direct.h>
-#elif defined __unix__
-#include <unistd.h>
-#elif defined __APPLE__
-#include <unistd.h>
-#else
-printf("Unsupported operating system\n");
-#endif
 
 using namespace ClipperLib;
-using namespace std;
 
 namespace fs = boost::filesystem;
 
-
-// int point_in_box(Node *p, Node *x_box, Node *y_box) {
-//     if (p->x > x_box->x && p->x < x_box->y) if (p->y > y_box->x && p->y < y_box->y)
-//         return 1;
-
-//     return 0;
-// }
-
-// void sort(Paths &p, Node *box, int n, int i, int vertices) {
-//     int j;
-
-//     box->x = DBL_MAX;
-//     box->y = -DBL_MAX;
-
-//     for (j = 0; j < vertices; j++) {
-//         if (n == 0) {
-//             if (p[i][j].X <= box->x)
-//                 box->x = p[i][j].X;
-//             if (p[i][j].X >= box->y)
-//                 box->y = p[i][j].X;
-//         } else {
-//             if (p[i][j].Y <= box->x)
-//                 box->x = p[i][j].Y;
-//             if (p[i][j].Y >= box->y)
-//                 box->y = p[i][j].Y;
-//         }
-//     }
-
-//     box->x = box->x / 10e12;
-//     box->y = box->y / 10e12;
-// }
-
-double get_dec_place(double value, int decPlace) {
-    int i;
+double get_dec_place(double value, int decPlace)
+{
     int dec = 1;
-
-    for (i = 0; i < decPlace; i++)
+    for (int i = 0; i < decPlace; i++)
         dec *= 10;
-
     return floor(value * dec + 0.5) / dec;
 }
 
-void file_system(System *sys, std::string test_name) {
+void set_example_vtk_path(System *sys, std::string test_run)
+{
+    sys->vtkpath = test_run + "vtk/";
+    fs::path vtkfolder(sys->vtkpath);
+    
+    std::cout << "VTK example path: " << sys->vtkpath << std::endl;  
+    if (boost::filesystem::create_directory(vtkfolder))
+        std::cout << "VTK folder created" << "\n";
+}
+
+void file_system(System *sys, std::string test_name, std::vector<std::string> ports)
+{
     chdir("../");
 
     boost::filesystem::path project_root_path(boost::filesystem::current_path());
@@ -80,7 +46,15 @@ void file_system(System *sys, std::string test_name) {
     std::string test_dir(project_root_path.string() + "/tests/");
     std::string test_run(test_dir + test_name + "/");
     fs::path test_path(test_run);
-    cout << "Test path: " << test_path << endl;
+    std::cout << "Test path: " << test_path << std::endl;
+
+    set_example_vtk_path(sys, test_run);
+
+    for (auto const& port : ports) {
+        fs::path port_path(test_run + port + ".mat");
+        if (!fs::exists(port_path))
+            throw std::invalid_argument("Current file does not exist. Run InductEx and FFH to generate the current files.");
+    }
 
     unsigned long file_count = 0;
     unsigned long dir_count = 0;
@@ -102,7 +76,7 @@ void file_system(System *sys, std::string test_name) {
     sys->m_files["dir"] = test_run;
 
     if (fs::is_directory(test_path)) {
-        std::cout << "Files found:" << endl;
+        std::cout << "Files found:" << std::endl;
         fs::directory_iterator end_iter;
 
         for (fs::directory_iterator dir_itr(test_path); dir_itr != end_iter; ++dir_itr) {
@@ -113,8 +87,11 @@ void file_system(System *sys, std::string test_name) {
                 }
                 else if (fs::is_regular_file(dir_itr->status())) {
                     ++file_count;
-                    string filename = dir_itr->path().filename().string();
-                    string extension = fs::extension(filename);
+                    std::string filename = dir_itr->path().filename().string();
+                    std::string extension = fs::extension(filename);
+
+                    // does_portfile_exist(filename, ports);
+
                     sys->m_files[extension] = filename;
                 }
                 else {
@@ -131,16 +108,19 @@ void file_system(System *sys, std::string test_name) {
     else
         std::cout << "\nFound: " << test_path << "\n";
 
+    // TODO: We have to change this is future versions.
     bool fil = false;
     bool mat = false;
 
     for (const auto& pair : sys->m_files) {
-        if (pair.first == ".fil")
+        if (pair.first == ".fil") {
             fil = true;
-        if (pair.first == ".mat")
+            std::cout << "-- " << pair.first << ": " << pair.second << "\n";            
+        }
+        if (pair.first == ".mat") {
             mat = true;
-
-        std::cout << "-- " << pair.first << ": " << pair.second << "\n";
+            std::cout << "-- " << pair.first << ": " << pair.second << "\n";
+        }
     }
 
     if (!fil)
@@ -148,82 +128,3 @@ void file_system(System *sys, std::string test_name) {
     if (!mat)
         throw std::invalid_argument(".mat file missing");
 }
-
-
-
-
-
-// void set_default_options(System *sys) {
-//     int i;
-
-//     char cwd[1024];
-
-//     printf("\n%c[1;32mStarting MagnetEx...\033[0m\n", 27);
-
-// #ifdef _WIN32
-//     if (_getcwd(cwd, sizeof(cwd)) != NULL)
-//         fprintf(stdout, "Current working dir: %s\n", cwd);
-//     else
-//         perror("getcwd() error");
-// #elif defined _WIN64
-//     if (_getcwd(cwd, sizeof(cwd)) != NULL)
-//         fprintf(stdout, "Current working dir: %s\n", cwd);
-//     else
-//         perror("getcwd() error");
-// #elif defined __unix__
-//     if (getcwd(cwd, sizeof(cwd)) != NULL)
-//         fprintf(stdout, "Current working dir: %s\n", cwd);
-//     else
-//         perror("getcwd() error");
-// #elif defined __APPLE__
-//     if (getcwd(cwd, sizeof(cwd)) != NULL)
-//         fprintf(stdout, "Current working dir: %s\n", cwd);
-//     else
-//         perror("getcwd() error");
-// #else
-//     printf("Unsupported operating system\n");
-// #endif
-
-//     sys->grid_width = 10;
-//     sys->factor = ((sys->NGrid - 1) / (sys->grid_width)) + 1;
-
-//     sys->dir = (char *) malloc(1 + strlen(cwd) + strlen("/def_tests/"));
-//     strcpy(sys->dir, cwd);
-//     strcat(sys->dir, "/def_tests/");
-//     sys->fil_name = "/filaments.txt";
-
-//     // sys->BMag = (Node **) calloc(sys->factor, sizeof(Node *));
-//     // sys->BField = (Node **) calloc(sys->NGrid, sizeof(Node *));
-
-//     // for (i = 0; i < sys->factor; i++)
-//     //     sys->BMag[i] = (Node *) calloc(sys->factor, sizeof(Node));
-//     // for (i = 0; i < sys->NGrid; i++)
-//     //     sys->BField[i] = (Node *) calloc(sys->NGrid, sizeof(Node));
-
-//     // sys->pNoise = (double *) malloc(sizeof(double) * sys->NGrid * sys->NGrid);
-
-//     sys->mat_file = (char *) malloc(1 + strlen(sys->dir) + strlen(sys->test_name) + strlen("/") + strlen(sys->mat_name) + strlen(".mat"));
-//     strcpy(sys->mat_file, sys->dir);
-//     strcat(sys->mat_file, sys->test_name);
-//     strcat(sys->mat_file, "/");
-//     strcat(sys->mat_file, sys->mat_name);
-//     strcat(sys->mat_file, ".mat");
-
-//     printf("Directory of %c[1;31m.mat\033[0m: %s\n", 27, sys->mat_file);
-
-//     sys->gds_file = (char *) malloc(1 + strlen(sys->dir) + strlen(sys->test_name) + strlen("/") + strlen(sys->gds_name));
-//     strcpy(sys->gds_file, sys->dir);
-//     strcat(sys->gds_file, sys->test_name);
-//     strcat(sys->gds_file, "/");
-//     strcat(sys->gds_file, sys->gds_name);
-//     strcat(sys->gds_file, ".gds");
-
-//     printf("Directory of %c[1;31m.gds\033[0m: %s\n", 27, sys->gds_file);
-
-//     sys->fil_file = (char *) malloc(1 + strlen(sys->dir) + strlen(sys->test_name) + strlen(sys->fil_name));
-//     strcpy(sys->fil_file, sys->dir);
-//     strcat(sys->fil_file, sys->test_name);
-//     strcat(sys->fil_file, sys->fil_name);
-
-//     printf("Directory of %c[1;31m.fil\033[0m: %s\n", 27, sys->fil_file);
-// }

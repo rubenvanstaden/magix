@@ -1,6 +1,6 @@
 InductEx v5.04 64-bit (26 August 2017). Copyright 2003-2017 Coenrad Fourie
 Licensed to: Ruben van Staden, Stellenbosch University, until 31 Dec 2018. [Super with Visualization]
-line_ring_0.gds -l h4k5_fastf.ldf -i lman.inp -fh -k -b 
+line_ring_0.gds -l h4k5_fastf.ldf -i lman1.inp -fh -k -b 
 Techfile h4k5_fastf.ldf read: Units in 1E-6 m. AbsMin=0.001 GapMax=3
 Spice netlist line_ring_0.cir read. Totals: L = 1, k = 0, P = 2.
 Total unique loops identified in netlist = 2
@@ -30,6 +30,6 @@ KFY0     LFY   L1                       0.0000214882675867029
 External magnetic field coupling (z-directed):
 KFZ0     LFZ   L1                      -5.30350019822232E-7
 Deallocating memory.
-Cycles found in 0.009 seconds.
-SVD solution in 0.004 seconds.
-Job finished in 1.570 seconds.
+Cycles found in 0.021 seconds.
+SVD solution in 0.005 seconds.
+Job finished in 1.671 seconds.

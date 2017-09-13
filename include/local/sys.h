@@ -14,11 +14,16 @@
 #include <iomanip>
 #include <map>
 
+#include <boost/filesystem.hpp>
+#include "boost/progress.hpp"
+
 #include "filament.h"
 #include "clipper.hpp"
 #include "points.h"
 
 using namespace ClipperLib;
+
+namespace fs = boost::filesystem;
 
 typedef std::map<std::string, std::string> mapFiles;
 typedef std::map <std::string, Node *> mapCurrents;
@@ -47,7 +52,8 @@ struct System
 	std::string fil_name;
 	std::string layer_file;
 	std::string gds_file;
-
+	std::string vtkpath;
+	
 	Paths layerpoly;
 };
 

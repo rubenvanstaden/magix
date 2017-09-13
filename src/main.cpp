@@ -47,8 +47,10 @@ int main(int argc, char *argv[])
     Grid *grid = new Grid;
     Layers *layers = new Layers;
 
-    auto args = docopt::docopt(USAGE, {argv+1, argv+argc}, true, "Magix 1.0.0", false);
-    
+    std::string version = "Magix 1.0.0";
+
+    std::cout << "\n";
+    auto args = docopt::docopt(USAGE, {argv+1, argv+argc}, true, version, false);
     for(auto const& arg : args)
         std::cout << arg.first << ": " << arg.second << std::endl;
 
@@ -76,13 +78,12 @@ int main(int argc, char *argv[])
     }
 
     if (args["<test-name>"].isString()) {
-        std::string test_name = args["<test-name>"].asString();
-
-        file_system(sys, test_name);
-        read_filaments(sys);
-
         if (args["<port-name>"].isStringList()) {
+            std::string test_name = args["<test-name>"].asString();            
             auto const& list = args["<port-name>"].asStringList();
+
+            file_system(sys, test_name, list);
+            read_filaments(sys);
        
             std::cout << "\n--- The following .mat files will be used ---" << std::endl;            
             for(auto const& port : list)

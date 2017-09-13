@@ -4,7 +4,7 @@
 #include "sys.h"
 
 void set_default_options(System *sys);
-void file_system(System *sys, std::string test_name);
+void file_system(System *sys, std::string test_name, std::vector<std::string> ports);
 double get_dec_place(double value, int decPlace);
 
 #endif

@@ -31,12 +31,12 @@ void number_of_filaments(System *sys)
         
         myfile.close();
     } else
-        throw std::invalid_argument("Unable to open MSH file.");
+        throw std::invalid_argument("Unable to open filament file.");
 }
 
 void create_fil_corners(System *sys) 
 {
-    std::cout << "\n--- Creating filament corners ---" << std::endl;
+    std::cout << "** Creating filament corners" << std::endl;
     
     // For now we assume the filaments are lying in one plane.
     // i.o.w. we have to implement algorithms for filaments 
@@ -123,17 +123,17 @@ void create_fil_corners(System *sys)
         }
     }
 
-    std::cout << "--- Success filament corners ---" << std::endl;
+    std::cout << "-- " << "\033[1;32m" << "success" << "\033[0m" << std::endl;
 }
 
 void read_filaments(System *sys) 
 {
     std::string fil_file = sys->m_files["dir"] + sys->m_files[".fil"];
-    std::cout << "\n--- Reading filament file: " << fil_file << std::endl;
+    std::cout << "\n* Reading filament file: " << fil_file << std::endl;
     std::ifstream myfile(fil_file);
     std::string line;
 
-    number_of_filaments(sys);    
+    number_of_filaments(sys);
 
     int line_num = 0;
     
@@ -150,12 +150,11 @@ void read_filaments(System *sys)
             }
 
             line_num++;
-            
         }
         
         myfile.close();
     } else
-        throw std::invalid_argument("Unable to open MSH file.");
+        throw std::invalid_argument("Unable to open filament file.");
 
     create_fil_corners(sys);
 
@@ -166,7 +165,7 @@ void read_filaments(System *sys)
         fil->stroom.z = 0.0;        
     }    
     
-    std::cout << "--- Success reading filament file ---" << std::endl;
+    std::cout << "- " << "\033[1;32m" << "success" << "\033[0m" << std::endl;
 }
 
 // id layer Sx Sy Sz Lx Ly Lz Wx Wy Wz Hx Hy Hz length width height area
@@ -234,7 +233,7 @@ void read_mat(System *sys, std::string mat_name) {
 
         myfile.close();
     } else
-        throw std::invalid_argument("Unable to open MSH file.");
+        throw std::invalid_argument("Unable to open port file.");
 }
 
 std::map <std::string, Node *> filament_point_currents(System *sys)

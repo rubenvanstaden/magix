@@ -30,6 +30,6 @@ KFY0     LFY   L1                       0.0000110335528581823
 External magnetic field coupling (z-directed):
 KFZ0     LFZ   L1                      -6.58329094059782E-6
 Deallocating memory.
-Cycles found in 0.021 seconds.
+Cycles found in 0.006 seconds.
 SVD solution in 0.004 seconds.
-Job finished in 1.280 seconds.
+Job finished in 1.255 seconds.
