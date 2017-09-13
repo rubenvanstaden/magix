@@ -126,7 +126,6 @@ Paths create_poly(Poly *layerpoly) {
     for (int j = 0; j < 4; j++) {
         x[j] = (int) (layerpoly->corners[j].y);
         y[j] = (int) (layerpoly->corners[j].z);
-
         poly[0] << IntPoint(x[j], y[j]);
     }
 
@@ -134,7 +133,7 @@ Paths create_poly(Poly *layerpoly) {
 }
 
 void clip_layers(System *sys, Layers *layers) {
-    std::cout << "\n--- Clipping sliced layers ---" << std::endl;
+    std::cout << "\n* Clipping sliced layers" << std::endl;
     
     Paths subj(1);
 
@@ -149,9 +148,8 @@ void clip_layers(System *sys, Layers *layers) {
             std::cout << subj << std::endl;            
         }
         else {
+            Clipper clpr;            
             clip = create_poly(layers->layVect[i]);
-
-            Clipper clpr;
 
             clpr.AddPaths(subj, ptSubject, true);
             clpr.AddPaths(clip, ptClip, true);
@@ -161,7 +159,7 @@ void clip_layers(System *sys, Layers *layers) {
         count++;
     }
 
-    std::cout << "\n--- Finished clipping sliced layers ---" << std::endl;
+    std::cout << "- " << "\033[1;32m" << "success" << "\033[0m" << std::endl;
     
     sys->layerpoly = subj;
 }

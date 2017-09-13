@@ -112,7 +112,7 @@ void vtk_grid_polygons(System *sys, Grid *grid)
     vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
     
     create_layers(sys, polygons, points);
-    create_grid(sys, grid, polygons, points);
+    // create_grid(sys, grid, polygons, points);
 
     vtkSmartPointer<vtkPolyData> polygonPolyData = vtkSmartPointer<vtkPolyData>::New();
     polygonPolyData->SetPoints(points);
@@ -126,14 +126,14 @@ void vtk_grid_polygons(System *sys, Grid *grid)
     std::cout << "\n--- VTK grid finished polygons ---" << std::endl;    
 }
 
-void vtk_mag_field(System *sys, Grid *grid) 
+void vtk_hfield_struct_grid(System *sys, Grid *grid) 
 {
-    vtkSmartPointer<vtkDoubleArray> b_field = vtkSmartPointer<vtkDoubleArray>::New();
+    vtkSmartPointer<vtkDoubleArray> hfield = vtkSmartPointer<vtkDoubleArray>::New();
     vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
     vtkSmartPointer<vtkStructuredGrid> structuredGrid = vtkSmartPointer<vtkStructuredGrid>::New();
 
-    b_field->SetNumberOfComponents(3);
-    b_field->SetName("b_field");
+    hfield->SetNumberOfComponents(3);
+    hfield->SetName("hfield");
 
     for (int i = 0; i < sys->NGrid; i++) {
         for (int j = 0; j < sys->NGrid; j++) {
@@ -152,28 +152,36 @@ void vtk_mag_field(System *sys, Grid *grid)
             double z = grid->nz(i,j);
 
             points->InsertNextPoint(x, y, z);
-            b_field->InsertNextTupleValue(vertex);
+            hfield->InsertNextTupleValue(vertex);
+
+            // if (!point_inside_layer(x, y, sys->layerpoly)) {
+            //     points->InsertNextPoint(x, y, z);
+            //     hfield->InsertNextTupleValue(vertex);
+            // }
         }
     }
     
+    // We have to change these dimenstions if we want to 
+    // exclude the fields inside the layers.
     structuredGrid->SetDimensions(sys->NGrid, sys->NGrid, 1);
     structuredGrid->SetPoints(points);
-    structuredGrid->GetPointData()->SetScalars(b_field);
+    structuredGrid->GetPointData()->SetScalars(hfield);
 
     vtkSmartPointer<vtkXMLStructuredGridWriter> writer = vtkSmartPointer<vtkXMLStructuredGridWriter>::New();
-    writer->SetFileName("magix_field.vts");
+    std::string filename = sys->vtkpath + "hfield_struct_grid.vts";
+    writer->SetFileName(filename.c_str());
     writer->SetInputData(structuredGrid);
     writer->Write();
 }
 
-void vtk_current_sum(System *sys, Grid *grid, std::map <std::string, Node *> filpoints) 
+void vtk_efield(System *sys, Grid *grid, std::map <std::string, Node *> filpoints) 
 {
-    vtkSmartPointer<vtkDoubleArray> current_field = vtkSmartPointer<vtkDoubleArray>::New();
+    vtkSmartPointer<vtkDoubleArray> efield = vtkSmartPointer<vtkDoubleArray>::New();
     vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
     vtkSmartPointer<vtkStructuredGrid> structuredGrid = vtkSmartPointer<vtkStructuredGrid>::New();
 
-    current_field->SetNumberOfComponents(3);
-    current_field->SetName("current_field");
+    efield->SetNumberOfComponents(3);
+    efield->SetName("efield");
     
     for (auto const& fil : filpoints) {
         std::istringstream iss(fil.first);
@@ -192,7 +200,7 @@ void vtk_current_sum(System *sys, Grid *grid, std::map <std::string, Node *> fil
         double z = std::stod(tokens[2]) * 10e-12;
 
         points->InsertNextPoint(x, y, z);
-        current_field->InsertNextTupleValue(vertex);
+        efield->InsertNextTupleValue(vertex);
     }
 
     vtkSmartPointer<vtkPolyData> pointsPolydata = vtkSmartPointer<vtkPolyData>::New();
@@ -204,24 +212,22 @@ void vtk_current_sum(System *sys, Grid *grid, std::map <std::string, Node *> fil
 
     vtkSmartPointer<vtkPolyData> polydata = vtkSmartPointer<vtkPolyData>::New();
     polydata->DeepCopy(vertexFilter->GetOutput());
-    polydata->GetPointData()->SetVectors(current_field);
+    polydata->GetPointData()->SetVectors(efield);
 
     vtkSmartPointer<vtkXMLPolyDataWriter> writer = vtkSmartPointer<vtkXMLPolyDataWriter>::New();
-    std::string filename = sys->vtkpath + "vtk_sum_current.vtp";
-    std::cout << filename << std::endl;
+    std::string filename = sys->vtkpath + "efield.vtp";
     writer->SetFileName(filename.c_str());
     writer->SetInputData(polydata);
     writer->Write();
 }
 
-void vtk_poly_points(System *sys, Grid *grid) 
+void vtk_hfield(System *sys, Grid *grid) 
 {
-    vtkSmartPointer<vtkDoubleArray> b_field = vtkSmartPointer<vtkDoubleArray>::New();
+    vtkSmartPointer<vtkDoubleArray> hfield = vtkSmartPointer<vtkDoubleArray>::New();
     vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
-    vtkSmartPointer<vtkStructuredGrid> structuredGrid = vtkSmartPointer<vtkStructuredGrid>::New();
 
-    b_field->SetNumberOfComponents(3);
-    b_field->SetName("b_field");
+    hfield->SetNumberOfComponents(3);
+    hfield->SetName("hfield");
 
     for (int i = 0; i < sys->NGrid; i++) {
         for (int j = 0; j < sys->NGrid; j++) {
@@ -235,8 +241,12 @@ void vtk_poly_points(System *sys, Grid *grid)
             double y = grid->ny(i,j) * 10e-12;
             double z = grid->nz(i,j) * 10e-12;
 
-            // unsigned char r[3] = {1,0,0};
-            b_field->InsertNextTupleValue(vertex);
+            // if (!point_inside_layer(x, y, sys->layerpoly)) {
+            //     points->InsertNextPoint(x, y, z);
+            //     hfield->InsertNextTupleValue(vertex);
+            // }
+
+            hfield->InsertNextTupleValue(vertex);
             points->InsertNextPoint(x,y,z);
         }
     }
@@ -250,10 +260,11 @@ void vtk_poly_points(System *sys, Grid *grid)
 
     vtkSmartPointer<vtkPolyData> polydata = vtkSmartPointer<vtkPolyData>::New();
     polydata->ShallowCopy(vertexFilter->GetOutput());
-    polydata->GetPointData()->SetVectors(b_field);
+    polydata->GetPointData()->SetVectors(hfield);
 
     vtkSmartPointer<vtkXMLPolyDataWriter> writer = vtkSmartPointer<vtkXMLPolyDataWriter>::New();
-    writer->SetFileName("vtk_magnetic_field.vtp");
+    std::string filename = sys->vtkpath + "hfield.vtp";    
+    writer->SetFileName(filename.c_str());
     writer->SetInputData(polydata);
     writer->Write();
 }

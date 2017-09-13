@@ -46,6 +46,7 @@
         "utility": "cpp",
         "valarray": "cpp",
         "*.ipp": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "*.txx": "cpp"
     }
 }

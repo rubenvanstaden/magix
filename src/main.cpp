@@ -28,17 +28,25 @@ static const char *const USAGE =
             --version
 )";
 
-void vtk_methods(System *sys, Grid *grid, std::map <std::string, Node *> filpoints, std::string vtk_run)
+void vtk_methods(System *sys, Grid *grid, std::string test_name, std::map <std::string, Node *> filpoints, std::string vtk_run)
 {
-    vtk_grid_polygons(sys, grid);
-    vtk_mag_field(sys, grid);
-    vtk_poly_points(sys, grid);
-    vtk_current_sum(sys, grid, filpoints);
+    boost::filesystem::path project_root_path(boost::filesystem::current_path());
+    std::string test_dir(project_root_path.string() + "/tests/");
+    std::string test_path(test_dir + test_name + "/vtk/");
+    std::string efield_run("paraview " + test_path + "efield.vtp");
+    std::string hfield_run("paraview " + test_path + "hfield.vtp");
+    
+    // vtk_grid_polygons(sys, grid);
+    // vtk_hfield_struct_grid(sys, grid);
+    
+    // Calculate the magnetic and current fields.
+    vtk_hfield(sys, grid);
+    vtk_efield(sys, grid, filpoints);
 
-    if (vtk_run.compare("curr") == 0)
-        std::system("paraview ../vtk_sum_current.vtp");
-    else if (vtk_run.compare("mag") == 0)
-        std::system("paraview ../vtk_magnetic_field.vtp");
+    if (vtk_run.compare("efield") == 0)
+        std::system(efield_run.c_str());
+    else if (vtk_run.compare("hfield") == 0)
+        std::system(hfield_run.c_str());
 }
 
 int main(int argc, char *argv[]) 
@@ -97,13 +105,12 @@ int main(int argc, char *argv[])
     
             clip_layers(sys, layers);
             biot_savart(sys, grid);
-            // // bicubic(sys);
-            
+            // bicubic(sys);
             // lic(sys, grid);
             // write_bmp(sys, grid);
     
             if (args["--vtk"].isString())
-                vtk_methods(sys, grid, filpoints, args["--vtk"].asString());
+                vtk_methods(sys, grid, test_name, filpoints, args["--vtk"].asString());
         }
     }
 
