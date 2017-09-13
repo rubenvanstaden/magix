@@ -16,6 +16,15 @@ cmake ..
 make
 ```
 
+## Running Magix
+
+For the first version of *magix* we have to run it from the */build* directory using
+```
+./bin/magix --help
+```
+
+The input parameters are explained when you run *--help*. Remember parameters in [] brackets are optional.
+
 ## Filaments
 
 *Magix* requires three main files to work
