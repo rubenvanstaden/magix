@@ -135,6 +135,10 @@ iomanip
 -
 map
 -
+boost/filesystem.hpp
+-
+boost/progress.hpp
+../include/local/boost/progress.hpp
 filament.h
 ../include/local/filament.h
 clipper.hpp
@@ -7697,12 +7701,6 @@ clipper.hpp
 /home/thedon/ruben/volundr/magix/src/clipper.hpp
 sys.h
 /home/thedon/ruben/volundr/magix/src/sys.h
-direct.h
--
-direct.h
--
-unistd.h
--
 unistd.h
 -
 
