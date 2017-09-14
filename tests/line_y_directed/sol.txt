@@ -1,0 +1,16 @@
+InductEx v5.04 64-bit (26 August 2017). Copyright 2003-2017 Coenrad Fourie
+Licensed to: Ruben van Staden, Stellenbosch University, until 31 Dec 2018. [Super with Visualization]
+line_y_directed.gds -l h4k5_fastf.ldf -i lman1.inp -fh -k -b 
+Techfile h4k5_fastf.ldf read: Units in 1E-6 m. AbsMin=0.001 GapMax=3
+Spice netlist line_y_directed.cir read. Totals: L = 1, k = 0, P = 2.
+Total unique loops identified in netlist = 2
+Using FFH with DIAG preconditioner.
+FFH version 1.2su_64 found.
+GDS file line_y_directed.gds read: db units in 1E-9 m, 0.001 units per user unit.
+1 structures read. Reduced 7 objects to 6 polygons and 2 terminals.
+Terminal blocks = 2; Labels = 2; Extracted Ports = 2
+
+Port                  Positive terminal    Negative terminal
+P1                    M2,   polygon;       M0,   same as "+" terminal.
+P2                    M2,   polygon;       M0,   same as "+" terminal.
+(45) Cannot link "+" Terminal of Port p2 to a layout figure.

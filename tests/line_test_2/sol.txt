@@ -1,0 +1,35 @@
+InductEx v5.04 64-bit (26 August 2017). Copyright 2003-2017 Coenrad Fourie
+Licensed to: Ruben van Staden, Stellenbosch University, until 31 Dec 2018. [Super with Visualization]
+line_test_2.gds -l h4k5_fastf.ldf -i lman1.inp -fh -k -b 
+Techfile h4k5_fastf.ldf read: Units in 1E-6 m. AbsMin=0.001 GapMax=3
+Spice netlist line_test_2.cir read. Totals: L = 1, k = 0, P = 2.
+Total unique loops identified in netlist = 2
+Using FFH with DIAG preconditioner.
+FFH version 1.2su_64 found.
+GDS file line_test_2.gds read: db units in 1E-9 m, 0.001 units per user unit.
+1 structures read. Reduced 8 objects to 7 polygons and 2 terminals.
+Terminal blocks = 2; Labels = 2; Extracted Ports = 2
+
+Port                  Positive terminal    Negative terminal
+P1                    M2,   line along y;  M0,   same as "+" terminal.
+P2                    M2,   line along y;  M0,   same as "+" terminal.
+Minimum filaments in FFH = 2780
+
+Single impedance.
+
+Impedance  Inductance [pH]     Resistance [Ohm]   AbsDiff   PercDiff
+Name      Design    Extracted Design    Extracted (L only)  (L only)
+L1        50.0000   6.55738   --        --        -43.442   -86.89%
+
+External magnetic field coupling (x-directed):
+KFX0     LFX   L1                      0
+
+External magnetic field coupling (y-directed):
+KFY0     LFY   L1                       0.0000214781792237826
+
+External magnetic field coupling (z-directed):
+KFZ0     LFZ   L1                       8.78784965077401E-8
+Deallocating memory.
+Cycles found in 0.013 seconds.
+SVD solution in 0.004 seconds.
+Job finished in 1.312 seconds.

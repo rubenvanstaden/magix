@@ -22,8 +22,8 @@ static const char *const USAGE =
         magix <test-name> [--vtk=<vtk-run>] --grid=[small | medium | large] --ports <port-name>...
 
         Options:
-            -v --verbose        Verbose mode
-            -d --debug          Debugging mode
+            -v --verbose
+            -d --debug
             -h --help
             --version
 )";
