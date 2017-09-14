@@ -1,1 +1,1 @@
-Search.setIndex({docnames:["index"],envversion:52,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:0,search:0},titles:["Welcome to magix\u2019s documentation!"],titleterms:{document:0,indic:0,magix:0,tabl:0,welcom:0}})
+Search.setIndex({docnames:["index"],envversion:52,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{circuit:0,field:0,index:0,magnet:0,modul:0,page:0,program:0,search:0,superconduct:0,visual:0},titles:["Welcome to magix\u2019s documentation!"],titleterms:{document:0,indic:0,magix:0,tabl:0,welcom:0}})

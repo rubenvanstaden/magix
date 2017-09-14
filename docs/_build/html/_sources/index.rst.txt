@@ -18,3 +18,8 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+* Magix 
+
+Magix is a magnetic field visualization program for superconducting circuits.
+
