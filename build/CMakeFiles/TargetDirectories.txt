@@ -1,5 +1,5 @@
-/home/thedon/ruben/volundr/magix/build/CMakeFiles/rebuild_cache.dir
-/home/thedon/ruben/volundr/magix/build/CMakeFiles/edit_cache.dir
-/home/thedon/ruben/volundr/magix/build/CMakeFiles/magix.dir
-/home/thedon/ruben/volundr/magix/build/src/CMakeFiles/rebuild_cache.dir
-/home/thedon/ruben/volundr/magix/build/src/CMakeFiles/edit_cache.dir
+/Users/thedn/Downloads/therealtyler/Magix/build/CMakeFiles/rebuild_cache.dir
+/Users/thedn/Downloads/therealtyler/Magix/build/CMakeFiles/edit_cache.dir
+/Users/thedn/Downloads/therealtyler/Magix/build/CMakeFiles/magix.dir
+/Users/thedn/Downloads/therealtyler/Magix/build/src/CMakeFiles/rebuild_cache.dir
+/Users/thedn/Downloads/therealtyler/Magix/build/src/CMakeFiles/edit_cache.dir

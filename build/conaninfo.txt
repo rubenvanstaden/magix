@@ -1,13 +1,13 @@
 [settings]
     arch=x86_64
     build_type=Release
-    compiler=gcc
-    compiler.libcxx=libstdc++
-    compiler.version=6.3
-    os=Linux
+    compiler=apple-clang
+    compiler.libcxx=libc++
+    compiler.version=9.0
+    os=Macos
 
 [requires]
-    Boost/1.Y.Z
+    boost/1.Y.Z
     docopt.cpp/0.6.2
     jsonformoderncpp/2.Y.Z
 
@@ -17,50 +17,52 @@
 [full_settings]
     arch=x86_64
     build_type=Release
-    compiler=gcc
-    compiler.libcxx=libstdc++
-    compiler.version=6.3
-    os=Linux
+    compiler=apple-clang
+    compiler.libcxx=libc++
+    compiler.version=9.0
+    os=Macos
 
 [full_requires]
-    Boost/1.60.0@lasote/stable:812398dc2e419a822e072c8f88108c4cd1ff8d1f
-    bzip2/1.0.6@lasote/stable:880e5642afc26dae7f4019501d6632b3a6dba009
-    docopt.cpp/0.6.2@hoxnox/testing:173279d4a41fe2a4e957113c0bcba3913b67c5b1
+    boost/1.67.0@conan/stable:3f4ada010dcf78e7955cfa00319ac2a89c515e17
+    bzip2/1.0.6@conan/stable:aa84d9aecf24e625da451318795116f31a55ba90
+    docopt.cpp/0.6.2@hoxnox/testing:942ceb1d946903f01a3ec1fad097951ff5223753
     jsonformoderncpp/2.1.1@vthiery/stable:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
-    zlib/1.2.8@lasote/stable:82b1dd29b2e9143665c77ef477100c690d719cbf
+    zlib/1.2.11@conan/stable:8018a4df6e7d2b4630a814fa40c81b85b9182d2b
 
 [full_options]
-    Boost:fPIC=False
-    Boost:header_only=False
-    Boost:python=False
-    Boost:shared=False
-    Boost:without_atomic=False
-    Boost:without_chrono=False
-    Boost:without_container=False
-    Boost:without_context=False
-    Boost:without_coroutine=False
-    Boost:without_coroutine2=False
-    Boost:without_date_time=False
-    Boost:without_exception=False
-    Boost:without_filesystem=False
-    Boost:without_graph=False
-    Boost:without_graph_parallel=False
-    Boost:without_iostreams=False
-    Boost:without_locale=False
-    Boost:without_log=False
-    Boost:without_math=False
-    Boost:without_mpi=False
-    Boost:without_program_options=False
-    Boost:without_random=False
-    Boost:without_regex=False
-    Boost:without_serialization=False
-    Boost:without_signals=False
-    Boost:without_system=False
-    Boost:without_test=False
-    Boost:without_thread=False
-    Boost:without_timer=False
-    Boost:without_type_erasure=False
-    Boost:without_wave=False
+    boost:fPIC=True
+    boost:header_only=False
+    boost:shared=True
+    boost:skip_lib_rename=False
+    boost:without_atomic=False
+    boost:without_chrono=False
+    boost:without_container=False
+    boost:without_context=False
+    boost:without_coroutine=False
+    boost:without_date_time=False
+    boost:without_exception=False
+    boost:without_fiber=False
+    boost:without_filesystem=False
+    boost:without_graph=False
+    boost:without_graph_parallel=False
+    boost:without_iostreams=False
+    boost:without_locale=False
+    boost:without_log=False
+    boost:without_math=False
+    boost:without_mpi=False
+    boost:without_program_options=False
+    boost:without_python=True
+    boost:without_random=False
+    boost:without_regex=False
+    boost:without_serialization=False
+    boost:without_signals=False
+    boost:without_stacktrace=False
+    boost:without_system=False
+    boost:without_test=False
+    boost:without_thread=False
+    boost:without_timer=False
+    boost:without_type_erasure=False
+    boost:without_wave=False
     bzip2:fPIC=True
     bzip2:shared=False
     docopt.cpp:root=
@@ -68,9 +70,6 @@
     docopt.cpp:static_crt=True
     docopt.cpp:system=False
     zlib:shared=False
-
-[scope]
-    dev=True
 
 [recipe_hash]
 

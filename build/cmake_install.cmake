@@ -1,4 +1,4 @@
-# Install script for directory: /home/thedon/ruben/volundr/magix
+# Install script for directory: /Users/thedn/Downloads/therealtyler/Magix
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,14 +27,9 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
-endif()
-
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/thedon/ruben/volundr/magix/build/src/cmake_install.cmake")
+  include("/Users/thedn/Downloads/therealtyler/Magix/build/src/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +41,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/thedon/ruben/volundr/magix/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/thedn/Downloads/therealtyler/Magix/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

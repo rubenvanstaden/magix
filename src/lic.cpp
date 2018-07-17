@@ -278,3 +278,10 @@ void lic(System *sys, Grid *grid) {
     printf("LIC End\n");
     printf("Time Spend: %lf\n", time_spent);
 }
+
+
+
+
+
+
+
